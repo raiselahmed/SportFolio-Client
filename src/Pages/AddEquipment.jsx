@@ -33,7 +33,7 @@ const {user} = useContext(AuthContext);
     console.log(newEquipment);
 
     //sent data to server and mongdb
-    fetch("http://localhost:5000/products", {
+    fetch("https://sportfolio-d0367.web.app/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",

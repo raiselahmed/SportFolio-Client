@@ -17,12 +17,12 @@ const Routes =createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
-        // errorElement: <ErrorPage></ErrorPage>,
+        errorElement: <ErrorPage></ErrorPage>,
         children:[
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: ()=> fetch('http://localhost:5000/products')
+                loader: ()=> fetch('https://sportfolio-d0367.web.app/products')
                 
             },
             {
@@ -32,7 +32,7 @@ const Routes =createBrowserRouter([
             {
                 path: '/allEquip',
                 element: <AllEquipmnt></AllEquipmnt>,
-                 loader: ()=> fetch('http://localhost:5000/products')
+                 loader: ()=> fetch('https://sportfolio-d0367.web.app/products')
             },
             {
                 path: '/myEquip',
@@ -41,12 +41,12 @@ const Routes =createBrowserRouter([
            {
                 path: 'allEquip/viweDetails/:id',
               element: <PrivetRoutes> <ViweDetails></ViweDetails> </PrivetRoutes>,
-                loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader: ({params}) => fetch(`https://sportfolio-d0367.web.app/products/${params.id}`)
             },
             {
                 path: '/viweDetails/:id',
                 element: <PrivetRoutes> <ViweDetails></ViweDetails> </PrivetRoutes>,
-                loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader: ({params}) => fetch(`https://sportfolio-d0367.web.app/products/${params.id}`)
             }
         ]
     },

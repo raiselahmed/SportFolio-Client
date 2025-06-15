@@ -26,7 +26,7 @@ const Register = () => {
         const createdAt = res?.user?.metadata?.creationTime;
         const newUsers = { name, email, createdAt, photoURl };
         //save users database
-        fetch("http://localhost:5000/users", {
+        fetch("https://sportfolio-d0367.web.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
