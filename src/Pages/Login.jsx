@@ -3,11 +3,22 @@ import { Link, useLocation, useNavigate } from "react-router";
 import hedarRegis from "../assets/images/product/register.png";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const { signInUser, } = useContext(AuthContext);
+  const { signInUser } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const showAlert = (title, text, icon) => {
+    Swal.fire({
+      title,
+      text,
+      icon,
+      confirmButtonText: "OK",
+    });
+  };
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -19,28 +30,38 @@ const Login = () => {
     signInUser(email, password)
       .then((res) => {
         console.log(res.user);
-        navigate(location?.state ? location.state : '/' )
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage);
+        showAlert("Error", errorMessage, "error");
       });
   };
   //
-  const {googleSignup} = useContext(AuthContext);
+  const { googleSignup } = useContext(AuthContext);
 
-  const handleGoogleLongIn = () =>{
-    console.log('gooole');
+  const handleGoogleLogin = () => {
+    console.log("gooole");
     googleSignup()
-    .then(() => {
+      .then(() => {
         // console.log("Google Sign-In successful");
-       
+
+        showAlert("Success!", "Google Login Successful.", "success");
+        navigate("/");
       })
       .catch(() => {
-      //  console.log(err)
+        //  console.log(err)
+        showAlert("Error!", "Google Login Failed. Please try again.", "error");
       });
-  }
+  };
 
+  const handleGitHubLogin = () => {
+    showAlert(
+      "Coming Soon!",
+      "GitHub login functionality is under development.",
+      "info"
+    );
+  };
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="card w-full max-w-2xl bg-base-100 shadow-xl rounded-lg overflow-hidden">
@@ -101,17 +122,23 @@ const Login = () => {
             </div>
           </form>
 
-     <div>
-      <h1 className="font-semibold my-3">Login With</h1>
-      <div className="*:w-full space-y-1">
-        <button onClick={handleGoogleLongIn} className="btn">
-            <FaGoogle></FaGoogle> Google
-        </button>
-        <button className="btn">
-            <FaGithub></FaGithub> GitHub
-        </button>
-      </div>
-    </div>
+          <div>
+            <h1 className="font-semibold my-3">Login With</h1>
+            <div className="*:w-full space-y-1">
+              <button
+                onClick={handleGoogleLogin}
+                className="btn w-full bg-blue-500 hover:bg-blue-600 text-white border-none flex items-center gap-2"
+              >
+                <FaGoogle /> Google
+              </button>
+              <button
+                onClick={handleGitHubLogin}
+                className="btn w-full bg-gray-600 hover:bg-gray-700 text-white border-none flex items-center gap-2"
+              >
+                <FaGithub /> GitHub
+              </button>
+            </div>
+          </div>
 
           <p className="text-center mt-3">
             Dont’t Have An Account ?{" "}

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddEquipment = () => {
 const {user} = useContext(AuthContext);
@@ -32,7 +33,7 @@ const {user} = useContext(AuthContext);
     console.log(newEquipment);
 
     //sent data to server and mongdb
-    fetch("https://spots-folio-server.vercel.app/products", {
+    fetch("http://localhost:5000/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -42,6 +43,26 @@ const {user} = useContext(AuthContext);
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+
+          if (data.insertedId) {
+                      console.log("user created in db", data);
+                       if (data.insertedId) {
+                            Swal.fire({
+                              title: "Success!",
+                              text: "Product added successfully.",
+                              icon: "success", // Correct icon for success
+                              confirmButtonText: "Cool",
+                            });
+                            form.reset(); // Clear the form after successful submission
+                          } else {
+                            Swal.fire({
+                              title: "Failed!",
+                              text: "User not add coffee. Please try again.",
+                              icon: "error", // Error icon for failure
+                              confirmButtonText: "Retry",
+                            });
+                          }
+                    }
       });
   };
 

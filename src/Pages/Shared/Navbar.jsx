@@ -1,15 +1,27 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaRegUserCircle } from "react-icons/fa";
 import userIcn from "../../assets/images/user.png";
+import Swal from "sweetalert2";
 const Navbar = () => {
   const { signOutUser, user } = useContext(AuthContext);
+  const navigate = useNavigate();
+    const showAlert = (title, text, icon) => {
+    Swal.fire({
+      title,
+      text,
+      icon,
+      confirmButtonText: "OK",
+    });
+  };
 
   const handleLogOut = () => {
     signOutUser()
       .then(() => {
         // console.log("logOut");
+         showAlert("Success!", "Google Login Successful.", "success");
+        navigate("/");
       })
       .catch((err) => {
         console.error("Error during logout:", err);

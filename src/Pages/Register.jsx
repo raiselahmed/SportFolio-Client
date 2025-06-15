@@ -26,7 +26,7 @@ const Register = () => {
         const createdAt = res?.user?.metadata?.creationTime;
         const newUsers = { name, email, createdAt, photoURl };
         //save users database
-        fetch("https://spots-folio-server.vercel.app/users", {
+        fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
