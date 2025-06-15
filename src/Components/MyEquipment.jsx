@@ -6,7 +6,7 @@ const MyEquipment = () => {
   const [items, setItem] = useState([]);
   console.log(items);
   useEffect(() => {
-    fetch(`http://localhost:5000/myProduct/${user?.email}`)
+    fetch(`https://spots-folio-server.vercel.app/myProduct/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setItem(data);

@@ -32,7 +32,7 @@ const {user} = useContext(AuthContext);
     console.log(newEquipment);
 
     //sent data to server and mongdb
-    fetch("http://localhost:5000/products", {
+    fetch("https://spots-folio-server.vercel.app/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",

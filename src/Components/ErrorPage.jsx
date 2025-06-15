@@ -1,0 +1,23 @@
+import React from "react";
+import FuzzyText from "../../ERRORPAGE/FuzzyText";
+
+const ErrorPage = () => {
+  // Define hover intensity and enable hover options
+  const hoverIntensity = 0.5; // Example value, adjust as needed
+  const enableHover = true;  // Set to false if you want no hover effect
+
+  return (
+    <div className="flex min-h-screen justify-center items-center bg-gray-100">
+      <FuzzyText
+        baseIntensity={0.2}
+        hoverIntensity={hoverIntensity}
+        enableHover={enableHover}
+        className="text-6xl font-bold text-red-600"
+      >
+        404
+      </FuzzyText>
+    </div>
+  );
+};
+
+export default ErrorPage;

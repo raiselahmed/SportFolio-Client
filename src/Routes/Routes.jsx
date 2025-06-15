@@ -11,16 +11,18 @@ import Register from '../Pages/Register';
 import ViweDetails from '../Components/ViweDetails';
 import PrivetRoutes from './PrivetRoutes';
 import MyEquipment from '../Components/MyEquipment';
+import ErrorPage from '../Components/ErrorPage';
 
 const Routes =createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children:[
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: ()=> fetch('http://localhost:5000/products')
+                loader: ()=> fetch('https://spots-folio-server.vercel.app/products')
                 
             },
             {
@@ -30,7 +32,7 @@ const Routes =createBrowserRouter([
             {
                 path: '/allEquip',
                 element: <AllEquipmnt></AllEquipmnt>,
-                 loader: ()=> fetch('http://localhost:5000/products')
+                 loader: ()=> fetch('https://spots-folio-server.vercel.app/products')
             },
             {
                 path: '/myEquip',
@@ -39,12 +41,12 @@ const Routes =createBrowserRouter([
            {
                 path: 'allEquip/viweDetails/:id',
               element: <PrivetRoutes> <ViweDetails></ViweDetails> </PrivetRoutes>,
-                loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader: ({params}) => fetch(`https://spots-folio-server.vercel.app/products/${params.id}`)
             },
             {
                 path: '/viweDetails/:id',
                 element: <PrivetRoutes> <ViweDetails></ViweDetails> </PrivetRoutes>,
-                loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader: ({params}) => fetch(`https://spots-folio-server.vercel.app/products/${params.id}`)
             }
         ]
     },
