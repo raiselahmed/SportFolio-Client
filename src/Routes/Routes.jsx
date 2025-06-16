@@ -22,7 +22,7 @@ const Routes =createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: ()=> fetch('https://sportfolio-d0367.web.app/products')
+                loader: ()=> fetch('https://spots-folio-server.vercel.app/products')
                 
             },
             {
@@ -32,7 +32,7 @@ const Routes =createBrowserRouter([
             {
                 path: '/allEquip',
                 element: <AllEquipmnt></AllEquipmnt>,
-                 loader: ()=> fetch('https://sportfolio-d0367.web.app/products')
+                 loader: ()=> fetch('https://spots-folio-server.vercel.app/products')
             },
             {
                 path: '/myEquip',
@@ -41,12 +41,12 @@ const Routes =createBrowserRouter([
            {
                 path: 'allEquip/viweDetails/:id',
               element: <PrivetRoutes> <ViweDetails></ViweDetails> </PrivetRoutes>,
-                loader: ({params}) => fetch(`https://sportfolio-d0367.web.app/products/${params.id}`)
+                loader: ({params}) => fetch(`https://spots-folio-server.vercel.app/products/${params.id}`)
             },
             {
                 path: '/viweDetails/:id',
                 element: <PrivetRoutes> <ViweDetails></ViweDetails> </PrivetRoutes>,
-                loader: ({params}) => fetch(`https://sportfolio-d0367.web.app/products/${params.id}`)
+                loader: ({params}) => fetch(`https://spots-folio-server.vercel.app/products/${params.id}`)
             }
         ]
     },
